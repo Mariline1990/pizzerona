@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Applicazione ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-warning sticky-top">
+        <div class="container">
+            @Html.ActionLink("PIZZERONA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    <li>@Html.ActionLink("+Pizza", "Create", "Pizzes", new { area = "" }, new { @class = "nav-link link-dark  bg-light" })</li>
+                    <li>@Html.ActionLink("+Bibita", "Create", "BIBITEs", new { area = "" }, new { @class = "nav-link link-dark ms-3 bg-light" })</li>
+                    <li>@Html.ActionLink("Iscriviti", "Create", "CLIENTEs", new { area = "" }, new { @class = "nav-link link-dark ms-3 bg-light" })</li>
+                    <li>@Html.ActionLink("Log in", "Login", "CLIENTEs", new { area = "" }, new { @class = "nav-link link-dark ms-3 bg-light" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <footer>
+                <div class="container text-light bg-black">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>Contattaci</h4>
+                            <p>Email: info@example.com</p>
+                            <p>Telefono: +123 456 7890</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Seguici</h4>
+                            <p>Seguici su social media per rimanere aggiornato sulle ultime novità.</p>
+                            <ul class="social-icons">
+                                <li><a href="#" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Indirizzo</h4>
+                            <p>Via Example, 123</p>
+                            <p>Città, CAP 12345</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-footer">
+                    <p>&copy; 2024 Nome della tua azienda. Tutti i diritti riservati.</p>
+                </div>
+            </footer>
+
+
+
+
+            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

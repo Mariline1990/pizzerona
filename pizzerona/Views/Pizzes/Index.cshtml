@@ -1,0 +1,42 @@
+﻿@model IEnumerable<pizzerona.Models.Pizze>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row" >
+    <img src="~/img/Screenshot 2024-03-12 181453.png"/>
+</div>
+<div class="card-container cardGrande p-4"> 
+    <h1 class="text-center fw-bolder mb-4">\\ Le nostre Pizze //</h1>
+    <div class="row g-0">
+        @foreach (var item in Model)
+        {
+
+            <div class="card mb-3" ;">
+                <div class="row g-0">
+
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title border-bottom" >@Html.DisplayFor(modelItem => item.Nome)</h2>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Prezzo) $</p>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.TempoConsegna)</p>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.Ingredienti)</p>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id_Pizza }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Details", "Details", new { id = item.id_Pizza }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id_Pizza }, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="@Html.Raw(item.img)" height="220" width="220" class="" alt="...">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

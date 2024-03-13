@@ -1,0 +1,82 @@
+﻿@model pizzerona.Models.CLIENTE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CLIENTE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COGNOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COGNOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INDIRIZZO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INDIRIZZO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CITTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CITTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RUOLO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RUOLO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PASSWORD)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_CLIENTE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
