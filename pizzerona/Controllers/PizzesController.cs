@@ -15,7 +15,7 @@ using pizzerona.Models;
 
 namespace pizzerona.Controllers
 {
-    [Authorize(Roles="Admin")]
+   // [Authorize(Roles="Admin")]
     public class PizzesController : Controller
     {
         private Model1 db = new Model1();

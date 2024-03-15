@@ -38,6 +38,7 @@ namespace pizzerona.Models
         [Required]
         public string EMAIL { get; set; }
 
+        [DataType(DataType.Password)]
         [Required]
         public string PASSWORD { get; set; }
 

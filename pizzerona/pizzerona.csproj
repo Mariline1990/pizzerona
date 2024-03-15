@@ -277,6 +277,7 @@
     <Content Include="Views\ORDINEs\Edit.cshtml" />
     <Content Include="Views\ORDINEs\Index.cshtml" />
     <Content Include="Views\Pizzes\AddPizza.cshtml" />
+    <Content Include="Views\ORDINEs\AggiungiAlCarrello.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

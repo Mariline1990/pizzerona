@@ -19,6 +19,7 @@ namespace pizzerona.Models
         public int id_Pizza { get; set; }
 
         [Required]
+        [Display(Name = "Nome Pizza")]
         public string Nome { get; set; }
 
         [Required]

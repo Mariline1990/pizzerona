@@ -9,13 +9,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table cardGrande">
+<table class="table cardGrande ">
     <tr>
-    
+
+        <th>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOME)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Pizze.Nome)
         </th>
-    
+        <th>
+            @Html.DisplayNameFor(model => model.INDIRIZZO_CONSEGNA)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.QUANTITA)
         </th>
@@ -25,31 +30,53 @@
         <th>
             @Html.DisplayNameFor(model => model.TOTALE)
         </th>
-        <th></th>
+        <th>
+            EVASO
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-   
-        <td>
-            @Html.DisplayFor(modelItem => item.Pizze.Nome)
-        </td>
-     
-        <td>
-            @Html.DisplayFor(modelItem => item.QUANTITA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOTA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TOTALE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_ORDINE }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_ORDINE }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_ORDINE })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CLIENTE.NOME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pizze.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.INDIRIZZO_CONSEGNA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QUANTITA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NOTA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TOTALE)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_ORDINE }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_ORDINE }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_ORDINE })
+            </td>
+            <td>
+
+
+                @using (Html.BeginForm("ModificaStato", "ORDINEs", FormMethod.Post, new { @class = "my-form-class" }))
+                {
+
+                    <input type="hidden" name="id" value="@item.ID_ORDINE" />
+                    <button type="submit" class="btn btn-primary">Evaso</button>
+                }
+             
+            </td>
+
+        </tr>
+       
+
+  }
 
 </table>

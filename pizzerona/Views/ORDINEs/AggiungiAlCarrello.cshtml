@@ -1,0 +1,81 @@
+﻿@model IEnumerable<pizzerona.Models.ORDINE>
+
+@{
+    ViewBag.Title = "AggiungiAlCarrello";
+}
+
+<h2>AggiungiAlCarrello</h2>
+
+<p>
+    @Html.ActionLink("Create New ", "Create")
+</p>
+<table class="table cardGrande">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BIBITE.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INDIRIZZO_CONSEGNA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QUANTITA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TOTALE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BIBITE.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLIENTE.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pizze.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.INDIRIZZO_CONSEGNA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QUANTITA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TOTALE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_ORDINE }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_ORDINE }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_ORDINE })
+        </td>
+    </tr>
+}
+
+</table>
+<div class="cardGrande row">
+    <div class="col-2"><h4>TOT: @ViewBag.Totale</h4></div>
+    <div class="col-10">
+
+            @using (Html.BeginForm("ModificaStato", "ORDINEs", FormMethod.Post, new { @class = "my-form-class" }))
+            {
+
+                <input type="hidden" name="id"/>
+                <button type="submit" class="btn btn-primary">Acquista</button>
+            }
+</div>
+</div>
