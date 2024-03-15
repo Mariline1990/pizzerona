@@ -140,7 +140,7 @@ namespace pizzerona.Controllers
             // Verifica se la pizza esiste nel database
             if (pizze == null)
             {
-                // Se la pizza non esiste, restituisci un errore 404
+                
                 return HttpNotFound();
             }
             // NELLE VIEW LIST RICORDARSI SEMPRE DI PASSARE UNA LISTA!!!!
@@ -150,42 +150,31 @@ namespace pizzerona.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult AddPizza()
+        //[HttpPost]
+        //public ActionResult Add()
+        //{
+          
+        //        var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
+        //        var cookiepizz = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
 
-        {
-            using (var dbContext = new Model1())
-            {
+        //    using (Model1 dbContext = new Model1())
+        //    {
+        //        db.ORDINE.Add(new ORDINE
+        //            {
+        //                FK_ID_PIZZA = Convert.ToInt32(cookiepizz),
+        //                FK_ID_CLIENTE = Convert.ToInt32(cookieValue),
+        //                INDIRIZZO_CONSEGNA = "Via Roma 1",
+        //                QUANTITA = 1,
+        //                TOTALE = 5,
+        //                NOTA = "Nessuna nota"
 
-             
-                
+        //            } );
 
-                var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
-                var cookiepizz = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
 
-                System.Diagnostics.Debug.WriteLine($"SONO IL VALORE DI NUOVOORDINE: {cookiepizz}");
-                if (cookieValue != null && cookiepizz != null)
-                //{
-                //    int cookieNumber2 = Convert.ToInt32(cookieValue);
-                //    int cookieNumber = Convert.ToInt32(cookiepizz);
-
-                db.ORDINE.Add(new ORDINE
-                {
-                    FK_ID_PIZZA = Convert.ToInt32(cookiepizz),  
-                    FK_ID_CLIENTE = Convert.ToInt32(cookieValue),
-                    INDIRIZZO_CONSEGNA = "Via Roma 1",
-                    QUANTITA = 1,
-                    TOTALE = 5.00M,
-                    NOTA = "Nessuna nota"
-                     
-                });
-                dbContext.SaveChanges();
-
-                //}
-
-                return View();
-            }
-        }
+        //        dbContext.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //}
 
         //[HttpPost]
         //public ActionResult AddPizza()

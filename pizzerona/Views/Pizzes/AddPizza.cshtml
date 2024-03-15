@@ -46,20 +46,34 @@
         <td>
             @Html.DisplayFor(modelItem => item.Ingredienti)
         </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.id_Pizza }) |
             @Html.ActionLink("Details", "Details", new { id = item.id_Pizza }) |
+            <div>
+                <div>
 
-@using (Html.BeginForm("AddPizza", "Pizzes", new { id = item.id_Pizza }, FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.Hidden("id_Pizza", item.id_Pizza)
-    <input type="submit" value="AddPizza" class="btn btn-default" />
-}
-            {
-             
-            
-            
+                    <button class="aggiungi-carrello" data-id="@item.id_Pizza">Aggiungi al carrello</button>
+                    <form>
+
+                        <input id="Quantita" type="number" name="quantita" value="1" min="1" max="30" class="shadow form-control me-2" style="width: auto;">
+                    </form>
+                </div>
+            </div>
+     
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+        $(document).ready(function () {
+        $(".aggiungi-carrello").click(function () {
+            var idPizza = $(this).data("id");
+            var quantita = $("#Quantita").val()
+            $.post("/ORDINEs/AggiungiAlCarrello/", { idPizza: idPizza, quantita: quantita }, function (response) {
+                alert(response);
+            });
+        });
+    });
+            </script>
+
         </td>
     </tr>
 }

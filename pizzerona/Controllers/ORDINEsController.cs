@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using pizzerona.Models;
 
@@ -14,20 +15,43 @@ namespace pizzerona.Controllers
     {
         private Model1 db = new Model1();
 
-        // GET: ORDINEs
-        //public ActionResult Index()
-        //{
-        //    var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
-        //    int IDCOOKIE = Convert.ToInt32(cookieValue);
+        //GET: ORDINEs
+        public ActionResult Index()
+        {
+            //    var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
+            //    int IDCOOKIE = Convert.ToInt32(cookieValue);
 
-        //    var cookieVaLORE = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
-        //    int cookieNumber = Convert.ToInt32(cookieVaLORE); // Utilizza cookieVaLORE invece di cookieValue
+            //    var cookieVaLORE = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
+            //    int cookieNumber = Convert.ToInt32(cookieVaLORE); // Utilizza cookieVaLORE invece di cookieValue
 
-        //    var oRDINE = db.ORDINE.Add(o => o.FK_ID_CLIENTE == IDCOOKIE).Where(o => o.FK_ID_PIZZA == cookieNumber).Include(o => o.BIBITE).Include(o => o.CLIENTE).Include(o => o.Pizze);
+            //    var oRDINE = db.ORDINE.Add(o => o.FK_ID_CLIENTE == IDCOOKIE).Where(o => o.FK_ID_PIZZA == cookieNumber).Include(o => o.BIBITE).Include(o => o.CLIENTE).Include(o => o.Pizze);
 
-        //    return View(oRDINE.ToList());
-        //}
+            return View("index");
+    }
+        [HttpPost]
+        public ActionResult AggiungiAlCarrello(int idPizza, string quantita)
+        {
 
+            int quantitaInt = Convert.ToInt32(quantita);
+            // Recupera la pizza dal database utilizzando l'ID
+            var pizza = db.Pizze.FirstOrDefault(p => p.id_Pizza == idPizza);
+
+               var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
+                int IDCOOKIE = Convert.ToInt32(cookieValue);
+            var indizzo = db.CLIENTE.FirstOrDefault(c => c.ID_CLIENTE == IDCOOKIE);
+
+            if (pizza != null)
+            {
+                // Aggiungi la pizza al carrello
+                var elementoOrdine = new ORDINE {FK_ID_CLIENTE= IDCOOKIE, FK_ID_PIZZA = idPizza, QUANTITA = quantitaInt, INDIRIZZO_CONSEGNA= "via IPPOLITO" }; // Puoi personalizzare la quantità in base alle tue esigenze
+                db.ORDINE.Add(elementoOrdine);
+                db.SaveChanges();// Ritorna un'esito positivo o un messaggio di successo, a seconda delle tue esigenze
+               
+            }
+
+            // Se la pizza non viene trovata nel database, ritorna un'esito negativo o un messaggio di errore
+            return RedirectToAction("Index","Pizze");
+        }
 
         // GET: ORDINEs/Details/5
         public ActionResult Details(int? id)
@@ -52,6 +76,8 @@ namespace pizzerona.Controllers
             ViewBag.FK_ID_PIZZA = new SelectList(db.Pizze, "id_Pizza", "Nome");
             return View();
         }
+
+
 
         // POST: ORDINEs/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
