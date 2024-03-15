@@ -166,6 +166,7 @@
     <Compile Include="Controllers\BIBITEsController.cs" />
     <Compile Include="Controllers\CLIENTEsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ORDINEsController.cs" />
     <Compile Include="Controllers\PizzesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,6 +208,7 @@
     <Content Include="img\pizz1.jpg" />
     <Content Include="img\pizz2.jpg" />
     <Content Include="img\pizz3.jpg" />
+    <Content Include="img\pizz4.jpg" />
     <Content Include="img\Screenshot 2024-03-12 181453.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -269,10 +271,15 @@
     <Content Include="Views\Pizzes\Edit.cshtml" />
     <Content Include="Views\Pizzes\Index.cshtml" />
     <Content Include="Views\CLIENTEs\Login.cshtml" />
+    <Content Include="Views\ORDINEs\Create.cshtml" />
+    <Content Include="Views\ORDINEs\Delete.cshtml" />
+    <Content Include="Views\ORDINEs\Details.cshtml" />
+    <Content Include="Views\ORDINEs\Edit.cshtml" />
+    <Content Include="Views\ORDINEs\Index.cshtml" />
+    <Content Include="Views\Pizzes\AddPizza.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ORDINEs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />

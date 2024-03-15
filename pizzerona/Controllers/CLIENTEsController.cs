@@ -65,10 +65,25 @@ namespace pizzerona.Controllers
           
                 var user = db.CLIENTE.FirstOrDefault(u => u.EMAIL.Equals(model.EMAIL) && u.PASSWORD.Equals(model.PASSWORD));
                
+
+
+
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.EMAIL, false);
-                    return RedirectToAction("Index","Home");
+                // conservo IL RUOLO e il cookie con l'ID_CLIENTE
+
+                FormsAuthentication.SetAuthCookie(user.ID_CLIENTE.ToString(), false);
+
+                HttpCookie LoginCookie = new HttpCookie("IDCookie");
+
+                LoginCookie.Value = user.ID_CLIENTE.ToString();
+
+                LoginCookie.Expires = DateTime.Now.AddHours(1);
+
+                Response.Cookies.Add(LoginCookie);
+
+                return RedirectToAction("Index","Home");
+
                 }
                 else
                 {

@@ -1,0 +1,74 @@
+﻿@model pizzerona.Models.ORDINE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ORDINE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BIBITE.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BIBITE.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pizze.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INDIRIZZO_CONSEGNA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INDIRIZZO_CONSEGNA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QUANTITA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUANTITA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTALE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTALE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_ORDINE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

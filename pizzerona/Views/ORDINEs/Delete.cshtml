@@ -1,0 +1,80 @@
+﻿@model pizzerona.Models.ORDINE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ORDINE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BIBITE.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BIBITE.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pizze.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INDIRIZZO_CONSEGNA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INDIRIZZO_CONSEGNA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QUANTITA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUANTITA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTALE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTALE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

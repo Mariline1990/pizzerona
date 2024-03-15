@@ -1,0 +1,55 @@
+﻿@model IEnumerable<pizzerona.Models.ORDINE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table cardGrande">
+    <tr>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.Pizze.Nome)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.QUANTITA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NOTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TOTALE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+   
+        <td>
+            @Html.DisplayFor(modelItem => item.Pizze.Nome)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.QUANTITA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TOTALE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_ORDINE }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_ORDINE }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_ORDINE })
+        </td>
+    </tr>
+}
+
+</table>

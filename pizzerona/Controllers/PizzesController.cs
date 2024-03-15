@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using pizzerona.Models;
 
@@ -20,6 +23,11 @@ namespace pizzerona.Controllers
         // GET: Pizzes
         public ActionResult Index()
         {
+
+        //   var ordiniCliente = db.ORDINE.Where(o => o.FK_ID_CLIENTE == idCliente).Include(o => o.Pizze);
+        
+          //  System.Diagnostics.Debug.WriteLine($"SONO IL VALORE DI ORDINI: {PIZO}");
+
             return View(db.Pizze.ToList());
         }
 
@@ -79,42 +87,143 @@ namespace pizzerona.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest); // un writeline non hai scelto niente
             }
-            var NuovaPizza = db.Pizze.Find(id);
+            var pizze = db.Pizze.Find(id);
+      
 
-
-            System.Diagnostics.Debug.WriteLine($"ìììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììValore di Piazza ID: {NuovaPizza}");
-
-            if (NuovaPizza == null)
+            if (pizze == null)
             {
                 return HttpNotFound();
             }
-
-            return RedirectToAction("Index");
+            return View("Edit", pizze);
         }
 
-        // POST: Pizzes/Edit/5
-        // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
-        // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Pizza,Nome,img,Prezzo,TempoConsegna,Ingredienti")] ORDINE ordine)
+        public ActionResult Edit([Bind(Include = "id_Pizza,Nome,img,Prezzo,TempoConsegna,Ingredienti")] Pizze pizze)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ordine).State = EntityState.Modified;
+                db.Entry(pizze).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
-
-            return View(ordine);
+            return View(pizze);
         }
 
-        // GET: Pizzes/Delete/5
+
+
+        // COMES SE NON ENTRASSE
+
+
+        [HttpGet]
+        public ActionResult AddPizza(int? id)
+        {
+            if (id == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Valore di id nullo");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            HttpCookie PizzaCookie = new HttpCookie("PizzaCookie");           
+            PizzaCookie.Value = $"{id }"; 
+            PizzaCookie.Expires = DateTime.Now.AddHours(1);
+            Response.Cookies.Add(PizzaCookie);
+
+            Pizze pizze = db.Pizze.Find(id);
+
+            // Verifica se la pizza esiste nel database
+            if (pizze == null)
+            {
+                // Se la pizza non esiste, restituisci un errore 404
+                return HttpNotFound();
+            }
+            // NELLE VIEW LIST RICORDARSI SEMPRE DI PASSARE UNA LISTA!!!!
+            return View(new List<Pizze> { pizze });
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult AddPizza()
+
+        {
+            using (var dbContext = new Model1())
+            {
+
+             
+                
+
+                var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
+                var cookiepizz = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
+
+                System.Diagnostics.Debug.WriteLine($"SONO IL VALORE DI NUOVOORDINE: {cookiepizz}");
+                if (cookieValue != null && cookiepizz != null)
+                //{
+                //    int cookieNumber2 = Convert.ToInt32(cookieValue);
+                //    int cookieNumber = Convert.ToInt32(cookiepizz);
+
+                db.ORDINE.Add(new ORDINE
+                {
+                    FK_ID_PIZZA = Convert.ToInt32(cookiepizz),  
+                    FK_ID_CLIENTE = Convert.ToInt32(cookieValue),
+                    INDIRIZZO_CONSEGNA = "Via Roma 1",
+                    QUANTITA = 1,
+                    TOTALE = 5.00M,
+                    NOTA = "Nessuna nota"
+                     
+                });
+                dbContext.SaveChanges();
+
+                //}
+
+                return View();
+            }
+        }
+
+        //[HttpPost]
+        //public ActionResult AddPizza()
+        //{
+
+        //    System.Diagnostics.Debug.WriteLine($"SONO IL TUO AGGIUNGI");
+
+        //    using (var dbContext = new Model1())
+        //    {
+
+        //        //  var cookieValue = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
+
+        //        //  System.Diagnostics.Debug.WriteLine($"SONO IL VALORE DI NUOVOORDINE: {cookieValue}");
+        //        //   var cookieValue = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
+
+        //        ORDINE NuovoOrdine = new ORDINE()
+        //        {
+        //            FK_ID_PIZZA = Convert.ToInt32(Request.Cookies["PizzaCookie"].Value),
+
+        //        };
+
+        //        // Aggiunta del nuovo ordine al set di entità ORDINE
+        //        dbContext.ORDINE.Add(NuovoOrdine);
+        //        dbContext.SaveChanges();
+
+        //        // Applicazione delle modifiche al database
+
+        //    }
+
+
+
+        //    return View("Index");
+        //}
+
+
+
+
+
         public ActionResult Delete(int? id)
         {
             if (id == null)

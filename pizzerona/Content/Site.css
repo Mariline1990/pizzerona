@@ -5,10 +5,7 @@ body{
     font-family: 'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif;
     
 }
-.carousel {
-    align-content: center;
-    height: 400px;
-}
+
 
 
 .cardGrande {
@@ -16,13 +13,14 @@ body{
     border-radius: 10px;
     border-top: 10px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-}}
-
-.body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
 }
+
+
+.nuovo{
+    height:200px;
+
+
+
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,

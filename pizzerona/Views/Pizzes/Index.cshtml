@@ -18,18 +18,22 @@
         @foreach (var item in Model)
         {
 
-            <div class="card mb-3" ;">
+            <div class="card mb-3">
                 <div class="row g-0">
 
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h2 class="card-title border-bottom" >@Html.DisplayFor(modelItem => item.Nome)</h2>
+                            <h2 class="card-title border-bottom">@Html.DisplayFor(modelItem => item.Nome)</h2>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.Prezzo) $</p>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.TempoConsegna)</p>
                             <p class="card-text">@Html.DisplayFor(modelItem => item.Ingredienti)</p>
                             @Html.ActionLink("Edit", "Edit", new { id = item.id_Pizza }, new { @class = "btn btn-primary" })
                             @Html.ActionLink("Details", "Details", new { id = item.id_Pizza }, new { @class = "btn btn-info" })
                             @Html.ActionLink("Delete", "Delete", new { id = item.id_Pizza }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink("AddPizza", "AddPizza", new { id = item.id_Pizza }, new { @class = "btn btn-warning" })
+                            <a href="@Url.Action("Index", "ORDINEs")">Azione</a>
+
+
                         </div>
                     </div>
                     <div class="col-md-4">

@@ -39,17 +39,17 @@ namespace pizzerona.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string Username)
+        public override string[] GetRolesForUser(string id)
 
         {
-            System.Diagnostics.Debug.WriteLine($"ìììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììValore di email: {Username}");
+            System.Diagnostics.Debug.WriteLine($"ìììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììValore di email: {id}");
             using (Model1 context = new Model1())
             {
                 
 
                 // Utilizzo EF per ottenere i ruoli dell'utente
-                var user = context.CLIENTE.FirstOrDefault(c => c.EMAIL == Username);
-                System.Diagnostics.Debug.WriteLine($"ìììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììValore di email: {Username}");
+                var user = context.CLIENTE.FirstOrDefault(c => c.ID_CLIENTE.ToString() == id);
+                System.Diagnostics.Debug.WriteLine($"ìììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììììValore di email: {id}");
 
 
                 if (user != null)
