@@ -16,6 +16,8 @@ namespace pizzerona.Controllers
         private Model1 db = new Model1();
 
         // GET: CLIENTEs
+
+        // nuovo
         public ActionResult Index()
         {
             return View(db.CLIENTE.ToList());
