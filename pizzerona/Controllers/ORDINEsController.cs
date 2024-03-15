@@ -18,6 +18,7 @@ namespace pizzerona.Controllers
         private Model1 db = new Model1();
 
         //GET: ORDINEs
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var Acquisti = db.ORDINE.Where(o => o.NOTA == "Acquistato").ToList();
@@ -47,7 +48,7 @@ namespace pizzerona.Controllers
             return View(ordine);
         }
 
-
+      
         [HttpPost]
         public ActionResult AggiungiAlCarrello(int idPizza, string quantita)
         {
@@ -82,7 +83,7 @@ namespace pizzerona.Controllers
 
 
         // tornare a fare la vista con la classe dettagli  di ordine /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// STEP 2
-
+        [Authorize(Roles = "User")]
         public ActionResult AggiungiAlCarrello()
         {
             var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
@@ -99,7 +100,7 @@ namespace pizzerona.Controllers
 
             return View(ordini);
         }
-
+        [Authorize(Roles = "User")]
         public ActionResult ModificaStato()
         {
             var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
@@ -122,7 +123,7 @@ namespace pizzerona.Controllers
         }
 
 
-
+        [Authorize(Roles = "Admin")]
         // GET: ORDINEs/Details/5
         public ActionResult Details(int? id)
         {
@@ -154,6 +155,7 @@ namespace pizzerona.Controllers
    
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID_ORDINE,FK_ID_PIZZA,FK_ID_BIBITA,FK_ID_CLIENTE,INDIRIZZO_CONSEGNA,QUANTITA,NOTA,TOTALE")] ORDINE oRDINE)
         {
             if (ModelState.IsValid)
@@ -170,6 +172,7 @@ namespace pizzerona.Controllers
         }
 
         // GET: ORDINEs/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -192,6 +195,7 @@ namespace pizzerona.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID_ORDINE,FK_ID_PIZZA,FK_ID_BIBITA,FK_ID_CLIENTE,INDIRIZZO_CONSEGNA,QUANTITA,NOTA,TOTALE")] ORDINE oRDINE)
         {
             if (ModelState.IsValid)
@@ -207,6 +211,7 @@ namespace pizzerona.Controllers
         }
 
         // GET: ORDINEs/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

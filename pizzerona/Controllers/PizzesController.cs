@@ -18,9 +18,11 @@ namespace pizzerona.Controllers
    // [Authorize(Roles="Admin")]
     public class PizzesController : Controller
     {
+     
         private Model1 db = new Model1();
 
         // GET: Pizzes
+        [Authorize(Roles = "User")]
         public ActionResult Index()
         {
 
@@ -32,6 +34,7 @@ namespace pizzerona.Controllers
         }
 
         // GET: Pizzes/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
 
         {
@@ -50,6 +53,7 @@ namespace pizzerona.Controllers
         }
 
         // GET: Pizzes/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -60,6 +64,7 @@ namespace pizzerona.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "id_Pizza,Nome,img,Prezzo,TempoConsegna,Ingredienti")] Pizze pizze, HttpPostedFileBase img )
         {
 
@@ -85,6 +90,7 @@ namespace pizzerona.Controllers
         // GET: Pizzes/Edit/5
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
 
@@ -104,6 +110,7 @@ namespace pizzerona.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "id_Pizza,Nome,img,Prezzo,TempoConsegna,Ingredienti")] Pizze pizze)
         {
             if (ModelState.IsValid)
@@ -118,7 +125,7 @@ namespace pizzerona.Controllers
 
 
         // COMES SE NON ENTRASSE
-
+      
 
         [HttpGet]
         public ActionResult AddPizza(int? id)
@@ -153,7 +160,7 @@ namespace pizzerona.Controllers
         //[HttpPost]
         //public ActionResult Add()
         //{
-          
+
         //        var cookieValue = HttpContext.Request.Cookies["IDCookie"]?.Value;
         //        var cookiepizz = HttpContext.Request.Cookies["PizzaCookie"]?.Value;
 
@@ -212,7 +219,7 @@ namespace pizzerona.Controllers
 
 
 
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
